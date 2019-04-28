@@ -116,8 +116,8 @@ resource "aws_security_group_rule" "bastion-to-master-ssh" {
   type                     = "ingress"
   security_group_id        = "${aws_security_group.masters-kukucluster-com.id}"
   source_security_group_id = "${aws_security_group.bastion-kukucluster-com.id}"
-  from_port                = 22
-  to_port                  = 22
+  from_port                = "${var.from_port}"
+  to_port                  = "${var.to_port}"
   protocol                 = "tcp"
 }
 
@@ -125,8 +125,8 @@ resource "aws_security_group_rule" "bastion-to-node-ssh" {
   type                     = "ingress"
   security_group_id        = "${aws_security_group.nodes-kukucluster-com.id}"
   source_security_group_id = "${aws_security_group.bastion-kukucluster-com.id}"
-  from_port                = 22
-  to_port                  = 22
+  from_port                = "${var.from_port}"
+  to_port                  = "${var.to_port}"
   protocol                 = "tcp"
 }
 
@@ -206,16 +206,16 @@ resource "aws_security_group_rule" "ssh-elb-to-bastion" {
   type                     = "ingress"
   security_group_id        = "${aws_security_group.bastion-kukucluster-com.id}"
   source_security_group_id = "${aws_security_group.bastion-elb-kukucluster-com.id}"
-  from_port                = 22
-  to_port                  = 22
+  from_port                = "${var.from_port}"
+  to_port                  = "${var.to_port}"
   protocol                 = "tcp"
 }
 
 resource "aws_security_group_rule" "ssh-external-to-bastion-elb-0-0-0-0--0" {
   type              = "ingress"
   security_group_id = "${aws_security_group.bastion-elb-kukucluster-com.id}"
-  from_port         = 22
-  to_port           = 22
+  from_port         = "${var.from_port}"
+  to_port           = "${var.to_port}"
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
 }

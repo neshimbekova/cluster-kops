@@ -45,3 +45,7 @@ master1b_min_size = 1
 master1c_max_size = 1
 
 master1c_min_size = 1
+
+from_port = 22
+
+to_port = 22

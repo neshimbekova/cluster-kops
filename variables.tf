@@ -27,3 +27,5 @@ variable "master1b_max_size" {}
 variable "master1b_min_size" {}
 variable "master1c_max_size" {}
 variable "master1c_min_size" {}
+variable "from_port" {}
+variable "to_port" {}
